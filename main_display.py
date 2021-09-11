@@ -5,7 +5,7 @@ from time import sleep
 
 # Global Constants
 MIN_COLS = 25
-MIN_LINES = 10
+MIN_LINES = 5
 
 
 def curses_main(stdscr: curses.window):
@@ -19,6 +19,8 @@ def curses_main(stdscr: curses.window):
     # Main event loop
     while True:
         # get keyboard input, returns -1 if none available
+        tool_panels.add_time_date(stdscr)
+        tool_panels.add_todo_list(stdscr, ["Make Breakfast", "Write code", "English!"])
         key = stdscr.getch()
         if key != -1:
             if chr(key) == "q":
