@@ -1,14 +1,11 @@
-from Widget_Classes import Widget
+from Widget_Classes import Toolbar_Widget
 from Root_Class import Root
 import curses
-
-TOP_PAD = 2
-RIGHT_PAD = 20
 
 
 class Toolbar(Root):
     """Class which provides a structure for widgets within a bar"""
-    def __init__(self, stdscr, location: str, horizontal_char="=", spacing_char=" "):
+    def __init__(self, stdscr, location="top", horizontal_char="=", spacing_char=" "):
         self.stdscr = stdscr
         self.location = location
         self.horizontal_char = horizontal_char
@@ -32,7 +29,7 @@ class Toolbar(Root):
                                f"{self.spacing_char}".join([widget.string for widget in self.widgets]))
             self.stdscr.addstr(curses.LINES-2, 0, self.horizontal_char * curses.COLS)
 
-    def add_widget(self, widget: Widget, index=-1):
+    def add_toolbar_widget(self, widget: Toolbar_Widget, index=-1):
         if widget.length + self.current_length > self.total_space:
             return
         self.widgets.insert(index, widget)
