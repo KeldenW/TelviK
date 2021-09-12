@@ -8,7 +8,7 @@ RIGHT_PAD = 20
 
 class Toolbar(Root):
     """Class which provides a structure for widgets within a bar"""
-    def __init__(self, stdscr: curses.window, location: str, horizontal_char="=", spacing_char=" "):
+    def __init__(self, stdscr, location: str, horizontal_char="=", spacing_char=" "):
         self.stdscr = stdscr
         self.location = location
         self.horizontal_char = horizontal_char

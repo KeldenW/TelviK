@@ -10,11 +10,13 @@ import threading
 from logging import info
 from time import sleep
 
-logging.basicConfig(filename=r"/home/tankblaster/PycharmProjects/TelviK/logs.log", level=logging.INFO)
-root = Root()
+logging.basicConfig(filename=r"logs.log", level=logging.INFO)
 
 
 def curses_main(stdscr: curses.window):
+
+    root = Root()
+
     stdscr.nodelay(True)
     curses.curs_set(0)
     curses.mousemask(1)
@@ -22,6 +24,7 @@ def curses_main(stdscr: curses.window):
         raise TerminalTooThinError(curses.COLS, root.min_length)
     elif curses.LINES < root.min_height:
         raise TerminalTooShortError(curses.LINES, root.min_height)
+
 
     # Adding things to the screen
     tool = Toolbar(stdscr, "top")
@@ -39,16 +42,7 @@ def curses_main(stdscr: curses.window):
 
 
 def main():
-    def on_scroll(x, y, dx, dy):
-
-
-    with Listener(on_scroll=on_scroll) as listener:
-        listener.join()
-        listener.start()
-
-
     curses.wrapper(curses_main)
-
 
 
 

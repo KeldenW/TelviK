@@ -1,3 +1,6 @@
+import curses
+
+
 class Root:
     def __init__(self, top_pad=2, right_pad=20, bottom_pad=2, left_pad=20, main_length=25, main_height=5):
         self.top_pad = top_pad
@@ -6,3 +9,6 @@ class Root:
         self.left_pad = left_pad
         self.min_length = left_pad + main_length + right_pad
         self.min_height = top_pad + main_height + bottom_pad
+
+    def character_response(self, stdscr: curses.window):
+        char = stdscr.getch
