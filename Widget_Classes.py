@@ -68,14 +68,17 @@ class Side_Todo_List(Side_Widget):
         screen_width = t_root.winfo_screenwidth()
         screen_height = t_root.winfo_screenheight()
 
-        # Make sure we are maximized
-        user32 = ctypes.WinDLL('user32')
+        # Make sure we are
+        if super().os_name == "Windows":
+            user32 = ctypes.WinDLL('user32')
 
-        SW_MAXIMISE = 3
+            SW_MAXIMISE = 3
 
-        hWnd = user32.GetForegroundWindow()
+            hWnd = user32.GetForegroundWindow()
 
-        user32.ShowWindow(hWnd, SW_MAXIMISE)
+            user32.ShowWindow(hWnd, SW_MAXIMISE)
+        elif super().os_name == "Linux":
+
 
         with Listener(on_scroll=self.on_scroll) as listener:
             listener.join()
