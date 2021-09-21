@@ -1,8 +1,14 @@
-import logging
-from Sidebar_Classes import *
-from Toolbar_Classes import *
+import curses
+
+import Sidebar_Class
+from Toolbar_Class import *
 from Widget_Classes import *
-from errors import *
+from errors import * 
+import logging
+from pynput.mouse import Listener
+import threading
+from logging import info
+from time import sleep
 
 logging.basicConfig(filename=r"logs.log", level=logging.INFO)
 
@@ -21,21 +27,14 @@ def curses_main(stdscr: curses.window):
 
     # Adding things to the screen
     tool = Toolbar(stdscr, "top")
-    side = Sidebar(stdscr, "right")
-
-    tool.add_toolbar_widget(Tool_Date_Time(), -1)
-    tool.add_toolbar_widget(Tool_Label("Hello World!"), 1)
-    
-    side.add_side_widget(Side_Todo_List(stdscr, ["Lorem", "ipsum", "dolor", "sit amet"]))
+    tool.add_widget(Date_Time(), -1)
+    tool.add_widget(Label("Hello!"), 1)
 
     # Main event loop
     while True:
-        # get keyboard input, returns -1 if none available
         tool.update()
-        side.update()
         # return cursor to start position
         stdscr.move(0, 0)
-        root.character_response(stdscr)
         stdscr.refresh()
 
 

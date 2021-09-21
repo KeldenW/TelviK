@@ -4,7 +4,6 @@ class Error(Exception):
 
 class TerminalTooThinError(Error):
     """Exception raised for terminals which are too thin to support TelviK."""
-
     def __init__(self, width: int, min_width: int, message="Terminal is too thin to support TelviK."):
         self.width = width
         self.min_width = min_width

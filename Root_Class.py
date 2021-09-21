@@ -1,6 +1,4 @@
 import curses
-import platform
-from logging import info
 
 
 class Root:
@@ -11,12 +9,6 @@ class Root:
         self.left_pad = left_pad
         self.min_length = left_pad + main_length + right_pad
         self.min_height = top_pad + main_height + bottom_pad
-        self.os_name = platform.system()
-
-        info(self.os_name)
 
     def character_response(self, stdscr: curses.window):
-        char = stdscr.getch()
-        if char == ord("q"):
-            exit()
-
+        char = stdscr.getch

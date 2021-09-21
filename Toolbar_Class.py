@@ -1,4 +1,3 @@
-from Widget_Classes import Toolbar_Widget
 from Root_Class import Root
 import curses
 
@@ -29,7 +28,7 @@ class Toolbar(Root):
                                f"{self.spacing_char}".join([widget.string for widget in self.widgets]))
             self.stdscr.addstr(curses.LINES-2, 0, self.horizontal_char * curses.COLS)
 
-    def add_toolbar_widget(self, widget: Toolbar_Widget, index=-1):
+    def add_widget(self, widget, index=-1):
         if widget.length + self.current_length > self.total_space:
             return
         self.widgets.insert(index, widget)
